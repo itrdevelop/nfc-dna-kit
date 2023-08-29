@@ -56,10 +56,10 @@ public class FileSettings: Codable {
         }
         
         
-        readPermission = Permission(rawValue: Helper.leftNibble(data[2]))!
-        writePermission = Permission(rawValue: Helper.rightNibble(data[2]))!
-        readWritePermission = Permission(rawValue: Helper.leftNibble(data[3]))!
-        changePermission = Permission(rawValue: Helper.rightNibble(data[3]))!
+        readPermission = Permission(rawValue: Helper.leftNibble(data[3]))!
+        writePermission = Permission(rawValue: Helper.rightNibble(data[3]))!
+        readWritePermission = Permission(rawValue: Helper.leftNibble(data[2]))!
+        changePermission = Permission(rawValue: Helper.rightNibble(data[2]))!
         
         fileSize = Helper.bytesToIntLE(Array(data[4...6]))
         
@@ -79,9 +79,9 @@ public class FileSettings: Codable {
             currentOffset += 1
             let sdmAccessRights2 = data[currentOffset]
             currentOffset += 1
-            sdmMetaReadPermission = Permission(rawValue: Helper.leftNibble(sdmAccessRights1))!
-            sdmFileReadPermission = Permission(rawValue: Helper.rightNibble(sdmAccessRights1))!
-            sdmReadCounterRetrievalPermission = Permission(rawValue: Helper.rightNibble(sdmAccessRights2))!
+            sdmMetaReadPermission = Permission(rawValue: Helper.leftNibble(sdmAccessRights2))!
+            sdmFileReadPermission = Permission(rawValue: Helper.rightNibble(sdmAccessRights2))!
+            sdmReadCounterRetrievalPermission = Permission(rawValue: Helper.rightNibble(sdmAccessRights1))!
             
             if sdmMetaReadPermission == .ALL {
                 if sdmOptionUid {
