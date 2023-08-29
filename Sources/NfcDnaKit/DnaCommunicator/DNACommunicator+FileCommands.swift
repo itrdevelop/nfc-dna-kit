@@ -61,7 +61,7 @@ public extension DnaCommunicator {
     func getFileSettings(fileNum: UInt8, completion: @escaping (FileSettings?, Error?) -> Void) {
         // Pg. 69
         
-        nxpMacCommand(command: 0xf5, header: [fileNum], data: []) { result, err in
+        nxpPlainCommand(command: 0xf5, header: [fileNum], data: []) { result, err in
             
             let settings = FileSettings(fromResultData:result)
             completion(settings, self.makeErrorIfNotExpectedStatus(result, error: err))
